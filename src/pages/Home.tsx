@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { getFeaturedOres } from '../data/ores'
 import OreCard from '../components/OreCard'
-import BackGround from '../assets/images/bgimage.jpeg';
+import BackGround from '..\assets\images\bgimage.jpeg'
 
 export default function Home() {
   const featured = getFeaturedOres()
