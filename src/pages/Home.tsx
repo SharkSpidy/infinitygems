@@ -9,7 +9,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-end pb-20 md:pb-32 overflow-hidden">
+      {/* Added pt-28 md:pt-32 here to clear the fixed header */}
+      <section className="relative min-h-screen flex items-end pt-28 md:pt-32 pb-20 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={BackGround}
