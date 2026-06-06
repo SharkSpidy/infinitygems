@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { getFeaturedOres } from '../data/ores'
 import OreCard from '../components/OreCard'
+import BackGround from '../assets/Back_Ground_1.jpg'
 
 export default function Home() {
   const featured = getFeaturedOres()
@@ -11,7 +12,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-end pb-20 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1800&q=85"
+            src={BackGround}
             alt="Hero gemstone"
             className="w-full h-full object-cover"
           />
