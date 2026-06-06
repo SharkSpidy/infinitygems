@@ -1,52 +1,31 @@
-import Link from 'next/link';
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
     <footer className="bg-obsidian border-t border-iron/20 mt-24">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Brand */}
           <div>
-            <div className="font-serif text-2xl tracking-widest text-ivory font-light mb-1">
-              INFINITY
-            </div>
-            <div className="font-serif text-xs tracking-ultra text-gold font-light mb-4">
-              GEMS & MINERALS
-            </div>
+            <div className="font-serif text-2xl tracking-widest text-ivory font-light mb-1">INFINITY</div>
+            <div className="font-serif text-xs tracking-ultra text-gold font-light mb-4">GEMS & MINERALS</div>
             <p className="font-sans text-silver text-sm leading-relaxed font-light max-w-xs">
-              A private vault of the world's most extraordinary sapphire and ruby
-              ore specimens — curated for the discerning collector.
+              A private vault of the world's most extraordinary sapphire and ruby ore specimens — curated for the discerning collector.
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">
-              Navigate
-            </h3>
+            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">Navigate</h3>
             <ul className="space-y-3">
-              {[
-                { href: '/', label: 'Home' },
-                { href: '/collection', label: 'The Collection' },
-                { href: '/contact', label: 'Contact' },
-              ].map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="font-sans text-sm text-silver hover:text-ivory transition-colors duration-300 hover-line"
-                  >
-                    {label}
-                  </Link>
+              {[{ to: '/', label: 'Home' }, { to: '/collection', label: 'The Collection' }, { to: '/contact', label: 'Contact' }].map(({ to, label }) => (
+                <li key={to}>
+                  <Link to={to} className="font-sans text-sm text-silver hover:text-ivory transition-colors duration-300 hover-line">{label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">
-              The Vault
-            </h3>
+            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">The Vault</h3>
             <address className="not-italic font-sans text-sm text-silver leading-relaxed font-light">
               <p>12 Gemstone Quarter</p>
               <p>Suite 400, The Meridian Tower</p>
@@ -69,5 +48,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

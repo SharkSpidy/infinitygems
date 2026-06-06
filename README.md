@@ -1,8 +1,6 @@
 # Infinity Gems & Minerals
 
-An exclusive luxury collectible ore website — built with **Next.js 14 (App Router)**, **TypeScript**, and **Tailwind CSS**.
-
----
+Built with **Vite + React 18 + TypeScript + Tailwind CSS + React Router v6**.
 
 ## Quick Start
 
@@ -11,53 +9,30 @@ npm install
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:5173](http://localhost:5173)
 
----
+## Routes
 
-## Pages & Routes
-
-| Route | Description |
+| Path | Page |
 |---|---|
-| `/` | Landing page — hero, about, featured specimens |
-| `/collection` | Full gallery with Sapphire/Ruby filters |
-| `/item/[id]` | Item detail with specs & inquiry button |
-| `/contact` | General contact form |
-| `/admin` | **Hidden** admin dashboard (not linked anywhere) |
+| `/` | Landing — hero, about, featured specimens |
+| `/collection` | Full gallery with gem type & availability filters |
+| `/item/:id` | Specimen detail — images, specs, inquiry button |
+| `/contact` | Contact form |
+| `/admin` | Hidden admin dashboard (not linked in nav) |
 
----
+## Admin
 
-## Admin Access
-
-Navigate directly to `/admin` — it is never linked in the site header or footer.
+Navigate directly to `/admin`.
 
 | Field | Value |
 |---|---|
 | Username | `admin` |
 | Password | `vault2024` |
 
-### Admin Features
-- **Inventory list** — view, filter, edit, delete specimens
-- **Add Specimen** — full form with all fields
-- **Edit Specimen** — inline editing panel
-- Live stats: Total / Available / Reserved / Sold
+## Stack
 
----
-
-## Design System
-
-- **Palette:** Obsidian dark (`#0A0A0B`), Charcoal, Gold accents (`#C9A84C`)
-- **Headings:** Cormorant Garamond (elegant serif)
-- **Body:** DM Sans (clean, light weight)
-- **No prices ever displayed** — all purchases via "Inquire for Valuation"
-
----
-
-## Tech Stack
-
-- Next.js 14 App Router
-- React 18 + TypeScript
-- Tailwind CSS 3
-- Google Fonts (Cormorant Garamond + DM Sans)
-- Unsplash placeholder images
-- All state is mock/local (no backend required)
+- **Vite 5** — instant dev server, no SSR overhead
+- **React Router v6** — client-side routing via `<Routes>`
+- **Tailwind CSS 3** — utility classes + custom design tokens
+- **No backend** — all data is mock JSON in `src/data/ores.ts`

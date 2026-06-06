@@ -1,49 +1,32 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useModal } from '@/src/hooks/useModal';
+import { useState, useEffect } from 'react'
+import { useModal } from '../hooks/useModal'
 
 export default function InquiryModal() {
-  const { isOpen, itemId, itemTitle, closeModal } = useModal();
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const { isOpen, itemId, itemTitle, closeModal } = useModal()
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    if (isOpen) {
-      setForm((f) => ({ ...f, message: '' }));
-      setSubmitted(false);
-    }
-  }, [isOpen, itemId]);
+    if (isOpen) { setForm(f => ({ ...f, message: '' })); setSubmitted(false) }
+  }, [isOpen, itemId])
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeModal();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [closeModal]);
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeModal()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [closeModal])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  if (!isOpen) return null
 
-  if (!isOpen) return null;
+  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true) }
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      onClick={(e) => e.target === e.currentTarget && closeModal()}
-    >
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      onClick={(e) => e.target === e.currentTarget && closeModal()}>
       <div className="absolute inset-0 bg-obsidian/80 modal-backdrop" />
 
-      {/* Panel */}
       <div className="relative w-full max-w-lg bg-vault border border-iron/60 shadow-2xl animate-fade-up">
-        {/* Close */}
-        <button
-          onClick={closeModal}
-          className="absolute top-4 right-4 text-silver hover:text-ivory transition-colors p-2"
-          aria-label="Close"
-        >
+        <button onClick={closeModal} className="absolute top-4 right-4 text-silver hover:text-ivory transition-colors p-2">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1" />
           </svg>
@@ -52,17 +35,10 @@ export default function InquiryModal() {
         <div className="p-8 md:p-10">
           {!submitted ? (
             <>
-              {/* Header */}
               <div className="mb-8">
-                <p className="font-sans text-xs tracking-widest uppercase text-gold mb-3">
-                  Private Valuation Inquiry
-                </p>
-                <h2 className="font-serif text-3xl text-ivory font-light">
-                  {itemTitle}
-                </h2>
-                <p className="font-sans text-xs text-silver/60 mt-1 tracking-widest">
-                  Item ID: {itemId}
-                </p>
+                <p className="font-sans text-xs tracking-widest uppercase text-gold mb-3">Private Valuation Inquiry</p>
+                <h2 className="font-serif text-3xl text-ivory font-light">{itemTitle}</h2>
+                <p className="font-sans text-xs text-silver/60 mt-1 tracking-widest">Item ID: {itemId}</p>
               </div>
 
               <div className="divider-gold mb-8" />
@@ -73,13 +49,11 @@ export default function InquiryModal() {
                   { name: 'email', label: 'Email Address', type: 'email', required: true },
                   { name: 'phone', label: 'Phone Number', type: 'tel', required: false },
                 ].map(({ name, label, type, required }) => (
-                  <div key={name} className="relative">
+                  <div key={name}>
                     <label className="block font-sans text-xs tracking-widest uppercase text-silver mb-2">
                       {label} {required && <span className="text-gold">*</span>}
                     </label>
-                    <input
-                      type={type}
-                      required={required}
+                    <input type={type} required={required}
                       value={form[name as keyof typeof form]}
                       onChange={(e) => setForm({ ...form, [name]: e.target.value })}
                       className="w-full bg-charcoal border border-iron/50 text-ivory font-sans text-sm px-4 py-3 focus:outline-none focus:border-gold/50 transition-colors placeholder:text-iron"
@@ -89,28 +63,19 @@ export default function InquiryModal() {
                 ))}
 
                 <div>
-                  <label className="block font-sans text-xs tracking-widest uppercase text-silver mb-2">
-                    Additional Notes
-                  </label>
-                  <textarea
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    rows={3}
+                  <label className="block font-sans text-xs tracking-widest uppercase text-silver mb-2">Additional Notes</label>
+                  <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    rows={3} placeholder="Any specific questions or requirements…"
                     className="w-full bg-charcoal border border-iron/50 text-ivory font-sans text-sm px-4 py-3 focus:outline-none focus:border-gold/50 transition-colors placeholder:text-iron resize-none"
-                    placeholder="Any specific questions or requirements…"
                   />
                 </div>
 
-                {/* Auto-filled item id indicator */}
                 <div className="bg-charcoal/50 border border-iron/30 px-4 py-2.5 flex items-center justify-between">
                   <span className="font-sans text-xs text-silver tracking-widest">ITEM REFERENCE</span>
                   <span className="font-sans text-xs text-gold tracking-widest">{itemId}</span>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300 mt-2"
-                >
+                <button type="submit" className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300 mt-2">
                   Submit Inquiry
                 </button>
               </form>
@@ -122,20 +87,12 @@ export default function InquiryModal() {
                   <path d="M4 10L8 14L16 6" stroke="#C9A84C" strokeWidth="1" />
                 </svg>
               </div>
-              <h3 className="font-serif text-2xl text-ivory font-light mb-3">
-                Inquiry Received
-              </h3>
+              <h3 className="font-serif text-2xl text-ivory font-light mb-3">Inquiry Received</h3>
               <p className="font-sans text-sm text-silver leading-relaxed font-light max-w-xs mx-auto">
-                Our specialist will contact you within 24 hours regarding{' '}
-                <span className="text-gold">{itemTitle}</span>.
+                Our specialist will contact you within 24 hours regarding <span className="text-gold">{itemTitle}</span>.
               </p>
-              <p className="font-sans text-xs text-iron mt-3 tracking-widest">
-                Reference: {itemId}
-              </p>
-              <button
-                onClick={closeModal}
-                className="mt-8 px-8 py-3 border border-iron/50 text-silver font-sans text-xs tracking-widest uppercase hover:border-gold/40 hover:text-gold transition-all duration-300"
-              >
+              <p className="font-sans text-xs text-iron mt-3 tracking-widest">Reference: {itemId}</p>
+              <button onClick={closeModal} className="mt-8 px-8 py-3 border border-iron/50 text-silver font-sans text-xs tracking-widest uppercase hover:border-gold/40 hover:text-gold transition-all duration-300">
                 Close
               </button>
             </div>
@@ -143,5 +100,5 @@ export default function InquiryModal() {
         </div>
       </div>
     </div>
-  );
+  )
 }
