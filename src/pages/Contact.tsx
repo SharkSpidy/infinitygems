@@ -14,7 +14,7 @@ export default function Contact() {
           <h1 className="font-serif text-5xl md:text-7xl text-ivory font-light mb-5">Contact Us</h1>
           <div className="divider-gold max-w-24 mx-auto mb-6" />
           <p className="font-sans text-sm text-silver font-light leading-relaxed">
-            For general inquiries, provenance questions, or to discuss acquiring a specific specimen from our vault.
+            Infinity Gems and Minerals LLP welcomes serious international inquiries, strategic partnerships, and collaboration opportunities related to this extraordinary gemstone asset.
           </p>
         </div>
 

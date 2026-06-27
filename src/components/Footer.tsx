@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="font-serif text-2xl tracking-widest text-ivory font-light mb-1">INFINITY</div>
             <div className="font-serif text-xs tracking-ultra text-gold font-light mb-4">GEMS & MINERALS</div>
             <p className="font-sans text-silver text-sm leading-relaxed font-light max-w-xs">
-              A private vault of the world's most extraordinary sapphire and ruby ore specimens — curated for the discerning collector.
+              Infinity Gems and Minerals LLP presents exceptional gemstone specimens, including natural unpolished Star Sapphire assets of extraordinary rarity and exhibition value.
             </p>
           </div>
 

@@ -35,7 +35,7 @@ export default function Home() {
               Gems.
             </h1>
             <p className="font-sans text-sm text-silver/80 leading-relaxed font-light max-w-md mb-10 animate-fade-up animate-delay-300">
-              An exclusive private vault of the world's most extraordinary sapphire and ruby ore specimens. Each piece is a geological masterwork — authenticated, catalogued, and available by private inquiry only.
+              Infinity Gems and Minerals LLP presents a remarkable Natural unpolished Star Sapphire specimen weighing approximately 2.3 kilograms (11,500 carats), a highly uncommon geological formation of museum-grade collector significance.
             </p>
             <div className="flex items-center gap-5 animate-fade-up animate-delay-400">
               <Link to="/collection" className="px-8 py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300">
@@ -63,10 +63,10 @@ export default function Home() {
             </h2>
             <div className="divider-gold mb-6 max-w-24" />
             <p className="font-sans text-sm text-silver leading-loose font-light mb-5">
-              Infinity Gems & Minerals was founded on a single principle: that the finest ore specimens deserve to be housed in a collection as extraordinary as they are. We source exclusively from the world's most storied deposits — Kashmir, Mogok, Montepuez — working directly with field geologists and regional specialists.
+              Infinity Gems and Minerals LLP specializes in exceptional gemstone specimens of extraordinary rarity, including a natural unpolished Star Sapphire of approximately 2.3 kilograms (11,500 carats). Its scale, provenance potential, and exhibition appeal place it beyond conventional commercial gemstone valuation.
             </p>
             <p className="font-sans text-sm text-silver leading-loose font-light mb-8">
-              Every specimen is independently authenticated by certified gemologists, fully documented with provenance records, and available only through private valuation inquiry. We do not display prices publicly — the rarity of these pieces makes standardized pricing a disservice to their true worth.
+              Positioned within the domain of museum-grade collector assets and high-value exhibition pieces, this specimen is valued for rarity, uniqueness, display potential, and collector demand rather than standard gemstone pricing models.
             </p>
             <Link to="/collection" className="inline-flex items-center gap-3 font-sans text-xs tracking-widest uppercase text-gold hover-line">
               View the Collection
@@ -133,7 +133,7 @@ export default function Home() {
           </h2>
           <div className="divider-gold max-w-32 mx-auto mb-6" />
           <p className="font-sans text-sm text-silver leading-loose font-light mb-10">
-            Each item in our vault is available for private valuation. Contact our specialists to initiate a discreet inquiry — no prices are published, as every piece merits individual consideration.
+            This 2.3 kg natural unpolished Star Sapphire represents an exceptionally rare opportunity within the global gemstone industry. Its remarkable size, rarity, and exhibition appeal position it as a potential museum-grade specimen with strong international auction and collector value.
           </p>
           <Link to="/collection" className="inline-flex px-10 py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300">
             Browse & Inquire
