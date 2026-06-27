@@ -78,9 +78,9 @@ export default function Home() {
 
           <div className="grid grid-cols-2 gap-6">
             {[
-              { num: '150+', label: 'Authenticated Specimens' },
-              { num: '12', label: 'Countries of Origin' },
-              { num: '15+', label: 'Years in Operation' },
+              { num: '50+', label: 'Authenticated Specimens' },
+              { num: '5', label: 'Countries of Origin' },
+              { num: '10+', label: 'Years in Operation' },
               { num: '100%', label: 'Certified Provenance' },
             ].map(({ num, label }) => (
               <div key={label} className="border border-iron/30 p-6 bg-charcoal/30">
