@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { getFeaturedOres } from '../data/ores'
+import { getFeaturedOres, getInventory } from '../data/inventory'
 import OreCard from '../components/OreCard'
 import BackGround from '../assets/images/bgimage.jpeg'
 
 export default function Home() {
-  const featured = getFeaturedOres()
+  const inventory = getInventory()
+  const featured = getFeaturedOres(inventory)
 
   return (
     <div className="min-h-screen">

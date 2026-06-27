@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { ores } from '../data/ores'
+import { useMemo, useState } from 'react'
+import { getInventory } from '../data/inventory'
 import OreCard from '../components/OreCard'
 import { GemType, OreStatus } from '../types/ore'
 
@@ -7,20 +7,21 @@ type GemFilter = 'All' | GemType
 type StatusFilter = 'All' | OreStatus
 
 export default function Collection() {
+  const [inventory] = useState(getInventory())
   const [gemFilter, setGemFilter] = useState<GemFilter>('All')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('All')
 
-  const filtered = ores.filter((o) => {
+  const filtered = useMemo(() => inventory.filter((o) => {
     const g = gemFilter === 'All' || o.gemType === gemFilter
     const s = statusFilter === 'All' || o.status === statusFilter
     return g && s
-  })
+  }), [inventory, gemFilter, statusFilter])
 
-  const counts = {
-    All: ores.length,
-    Sapphire: ores.filter((o) => o.gemType === 'Sapphire').length,
-    Ruby: ores.filter((o) => o.gemType === 'Ruby').length,
-  }
+  const counts = useMemo(() => ({
+    All: inventory.length,
+    Sapphire: inventory.filter((o) => o.gemType === 'Sapphire').length,
+    Ruby: inventory.filter((o) => o.gemType === 'Ruby').length,
+  }), [inventory])
 
   return (
     <div className="min-h-screen pt-28 pb-24">

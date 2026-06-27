@@ -16,6 +16,7 @@ export default function OreCard({ ore }: OreCardProps) {
           <img
             src={ore.imageUrl}
             alt={ore.title}
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
@@ -55,6 +56,7 @@ export default function OreCard({ ore }: OreCardProps) {
           <div>
             <span className="font-serif text-lg text-ivory font-light">{ore.caratWeight.toLocaleString()}</span>
             <span className="font-sans text-xs text-silver/60 ml-1">ct</span>
+            <div className="font-sans text-[11px] uppercase text-gold/60">{ore.category}</div>
           </div>
           {ore.status === 'Available' ? (
             <button

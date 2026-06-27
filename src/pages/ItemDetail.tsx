@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { getOreById, ores } from '../data/ores'
+import { getInventory, getOreById } from '../data/inventory'
 import { useModal } from '../hooks/useModal'
 import { Ore } from '../types/ore'
 
@@ -30,7 +30,8 @@ function RelatedCard({ ore }: { ore: Ore }) {
 
 export default function ItemDetail() {
   const { id } = useParams<{ id: string }>()
-  const ore = getOreById(id ?? '')
+  const inventory = useMemo(() => getInventory(), [])
+  const ore = getOreById(id ?? '', inventory)
   const { openModal } = useModal()
 
   if (!ore) return <Navigate to="/collection" replace />
@@ -38,7 +39,7 @@ export default function ItemDetail() {
   const allImages = [ore.imageUrl, ...(ore.additionalImages ?? [])]
   const [activeImg, setActiveImg] = useState(0)
 
-  const related = ores
+  const related = inventory
     .filter((o) => o.gemType === ore.gemType && o.id !== ore.id && o.status === 'Available')
     .slice(0, 3)
 

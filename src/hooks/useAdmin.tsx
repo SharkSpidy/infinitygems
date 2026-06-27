@@ -12,7 +12,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const login = (u: string, p: string) => {
-    if (u === 'admin' && p === 'vault2024') {
+    if (u === 'admin' && p === 'vault2026') {
       setIsAuthenticated(true)
       return true
     }

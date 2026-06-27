@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAdmin, AdminProvider } from '../hooks/useAdmin'
-import { ores as initialOres } from '../data/ores'
-import { Ore, GemType, OreStatus } from '../types/ore'
+import { getInventory, persistInventory, resetInventory } from '../data/inventory'
+import { Ore, GemType, OreStatus, OreCategory } from '../types/ore'
 
 // ── Login ────────────────────────────────────────────────────────
 function LoginScreen() {
@@ -69,8 +69,8 @@ function LoginScreen() {
 type OreFormData = Omit<Ore, 'id'> & { id?: string }
 
 const defaultForm: OreFormData = {
-  title: '', gemType: 'Sapphire', caratWeight: 0, weightGrams: 0,
-  dimensionsMm: { length: 0, width: 0, height: 0 },
+  title: '', gemType: 'Sapphire', category: 'Collector', price: 0, stock: 1, isFeatured: false,
+  caratWeight: 0, weightGrams: 0, dimensionsMm: { length: 0, width: 0, height: 0 },
   origin: '', description: '', imageUrl: '', status: 'Available',
 }
 
@@ -133,6 +133,34 @@ function OreFormPanel({ initial, onSave, onCancel }: { initial?: Ore; onSave: (d
         <input className="admin-input" value={form.origin} onChange={e => set('origin', e.target.value)} placeholder="e.g. Kashmir, India" />
       </div>
 
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="admin-label">Category</label>
+          <select className="admin-input" value={form.category} onChange={e => set('category', e.target.value as OreCategory)}>
+            <option value="Signature">Signature</option>
+            <option value="Collector">Collector</option>
+            <option value="Statement">Statement</option>
+          </select>
+        </div>
+        <div>
+          <label className="admin-label">Price</label>
+          <input className="admin-input" type="number" value={form.price} onChange={e => set('price', parseFloat(e.target.value))} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="admin-label">Stock</label>
+          <input className="admin-input" type="number" value={form.stock} onChange={e => set('stock', parseInt(e.target.value, 10))} />
+        </div>
+        <div className="flex items-end">
+          <label className="flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-silver/70">
+            <input type="checkbox" checked={form.isFeatured} onChange={e => set('isFeatured', e.target.checked)} className="accent-gold" />
+            Feature on homepage
+          </label>
+        </div>
+      </div>
+
       <div>
         <label className="admin-label">Primary Image URL</label>
         <input className="admin-input" value={form.imageUrl} onChange={e => set('imageUrl', e.target.value)} placeholder="https://images.unsplash.com/…" />
@@ -158,12 +186,16 @@ function OreFormPanel({ initial, onSave, onCancel }: { initial?: Ore; onSave: (d
 // ── Dashboard ─────────────────────────────────────────────────────
 function Dashboard() {
   const { logout } = useAdmin()
-  const [inventory, setInventory] = useState<Ore[]>(initialOres)
+  const [inventory, setInventory] = useState<Ore[]>(() => getInventory())
   const [tab, setTab] = useState<'inventory' | 'add'>('inventory')
   const [editing, setEditing] = useState<Ore | null>(null)
   const [gemFilter, setGemFilter] = useState<'All' | GemType>('All')
   const [statusFilter, setStatusFilter] = useState<'All' | OreStatus>('All')
   const [toast, setToast] = useState('')
+
+  useEffect(() => {
+    persistInventory(inventory)
+  }, [inventory])
 
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000) }
 
@@ -182,13 +214,14 @@ function Dashboard() {
 
   const handleAdd = (data: OreFormData) => {
     const newId = `IGM-${String(inventory.length + 1).padStart(3, '0')}`
-    setInventory([...inventory, { ...data, id: newId }])
+    const newItem: Ore = { ...data, id: newId } as Ore
+    setInventory([...inventory, newItem])
     setTab('inventory')
     showToast(`✓ ${data.title} added as ${newId}`)
   }
 
   const handleEdit = (data: OreFormData) => {
-    setInventory(inventory.map(o => o.id === editing?.id ? { ...data, id: o.id } : o))
+    setInventory(inventory.map(o => o.id === editing?.id ? { ...data, id: o.id } as Ore : o))
     setEditing(null)
     showToast(`✓ ${data.title} updated`)
   }
@@ -234,13 +267,25 @@ function Dashboard() {
           </div>
         )}
 
-        <div className="mb-8">
-          <h1 className="font-serif text-3xl text-ivory font-light">
-            {editing ? 'Edit Specimen' : tab === 'inventory' ? 'Vault Inventory' : 'Add New Specimen'}
-          </h1>
-          <p className="font-sans text-xs text-silver/40 tracking-widest mt-1">
-            {new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-          </p>
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="font-serif text-3xl text-ivory font-light">
+              {editing ? 'Edit Specimen' : tab === 'inventory' ? 'Vault Inventory' : 'Add New Specimen'}
+            </h1>
+            <p className="font-sans text-xs text-silver/40 tracking-widest mt-1">
+              {new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              const reset = resetInventory()
+              setInventory(reset)
+              showToast('Inventory restored to starter catalog')
+            }}
+            className="px-4 py-2 border border-iron/40 text-silver text-[11px] tracking-widest uppercase hover:border-gold/40 hover:text-gold transition-all duration-300"
+          >
+            Reset Demo Data
+          </button>
         </div>
 
         {/* Stats */}
