@@ -25,13 +25,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">The Vault</h3>
+            <h3 className="font-sans text-xs tracking-widest uppercase text-gold mb-5">Contact Us</h3>
             <address className="not-italic font-sans text-sm text-silver leading-relaxed font-light">
-              <p>12 Gemstone Quarter</p>
-              <p>Suite 400, The Meridian Tower</p>
-              <p>Geneva, Switzerland — 1201</p>
-              <p className="mt-3">+41 22 000 0000</p>
-              <p>vault@infinitygems.com</p>
+              {/* <p>12 Gemstone Quarter</p> */}
+              {/* <p>Suite 400, The Meridian Tower</p> */}
+              {/* <p>Geneva, Switzerland — 1201</p> */}
+              {/* <p className="mt-3">+41 22 000 0000</p> */}
+              <p>inquire@infinityluxjewels.com</p>
             </address>
           </div>
         </div>
