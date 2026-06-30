@@ -1,10 +1,38 @@
 import { useState } from 'react'
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mzdlaoop'
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        const data = await res.json().catch(() => null)
+        const message = data?.errors?.map((err: { message: string }) => err.message).join(', ')
+        setError(message || 'Something went wrong while sending your message. Please try again.')
+      }
+    } catch {
+      setError('Unable to reach the server. Please check your connection and try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen pt-28 pb-24">
@@ -21,9 +49,9 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
           <div className="lg:col-span-2 space-y-10">
             {[
-              { title: 'The Vault', lines: ['12 Gemstone Quarter', 'Suite 400, The Meridian Tower', 'Geneva, Switzerland — 1201'] },
-              { title: 'Electronic', lines: ['vault@infinitygems.com', 'acquisitions@infinitygems.com'] },
-              { title: 'Telephone', lines: ['+41 22 000 0000', 'Mon–Fri, 09:00–18:00 CET'] },
+              // { title: 'The Vault', lines: ['12 Gemstone Quarter', 'Suite 400, The Meridian Tower', 'Geneva, Switzerland — 1201'] },
+              { title: 'Contact Us', lines: ['inquire@infinityluxjewels.com'] },
+              // { title: 'Telephone', lines: ['+41 22 000 0000', 'Mon–Fri, 09:00–18:00 CET'] },
             ].map(({ title, lines }) => (
               <div key={title} className="flex gap-5">
                 <div className="w-2 h-2 mt-2 bg-gold/40 flex-shrink-0" />
@@ -75,8 +103,15 @@ export default function Contact() {
                   />
                 </div>
 
-                <button type="submit" className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300">
-                  Send Message
+                {error && (
+                  <p className="font-sans text-xs text-red-400 border border-red-400/30 bg-red-400/5 px-4 py-3">
+                    {error}
+                  </p>
+                )}
+
+                <button type="submit" disabled={submitting}
+                  className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                  {submitting ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             ) : (
