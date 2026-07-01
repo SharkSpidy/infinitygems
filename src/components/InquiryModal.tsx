@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react'
 import { useModal } from '../hooks/useModal'
+import { submitInquiryForm } from '../utils/formspree'
 
 export default function InquiryModal() {
   const { isOpen, itemId, itemTitle, closeModal } = useModal()
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    if (isOpen) { setForm(f => ({ ...f, message: '' })); setSubmitted(false) }
+    if (isOpen) {
+      setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+      setSubmitted(false)
+      setError('')
+    }
   }, [isOpen, itemId])
 
   useEffect(() => {
@@ -18,7 +25,26 @@ export default function InquiryModal() {
 
   if (!isOpen) return null
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+
+    try {
+      await submitInquiryForm({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        subject: form.subject || `Inquiry for ${itemTitle}`,
+        message: form.message,
+      })
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to submit your inquiry. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
@@ -63,6 +89,14 @@ export default function InquiryModal() {
                 ))}
 
                 <div>
+                  <label className="block font-sans text-xs tracking-widest uppercase text-silver mb-2">Subject</label>
+                  <input type="text" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className="w-full bg-charcoal border border-iron/50 text-ivory font-sans text-sm px-4 py-3 focus:outline-none focus:border-gold/50 transition-colors placeholder:text-iron"
+                    placeholder="Briefly describe your inquiry"
+                  />
+                </div>
+
+                <div>
                   <label className="block font-sans text-xs tracking-widest uppercase text-silver mb-2">Additional Notes</label>
                   <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={3} placeholder="Any specific questions or requirements…"
@@ -75,8 +109,15 @@ export default function InquiryModal() {
                   <span className="font-sans text-xs text-gold tracking-widest">{itemId}</span>
                 </div>
 
-                <button type="submit" className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300 mt-2">
-                  Submit Inquiry
+                {error && (
+                  <p className="font-sans text-xs text-red-400 border border-red-400/30 bg-red-400/5 px-4 py-3">
+                    {error}
+                  </p>
+                )}
+
+                <button type="submit" disabled={submitting}
+                  className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                  {submitting ? 'Sending…' : 'Submit Inquiry'}
                 </button>
               </form>
             </>

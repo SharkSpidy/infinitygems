@@ -1,6 +1,5 @@
 import { useState } from 'react'
-
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mzdlaoop'
+import { submitInquiryForm } from '../utils/formspree'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
@@ -14,21 +13,10 @@ export default function Contact() {
     setError('')
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
-      })
-
-      if (res.ok) {
-        setSubmitted(true)
-      } else {
-        const data = await res.json().catch(() => null)
-        const message = data?.errors?.map((err: { message: string }) => err.message).join(', ')
-        setError(message || 'Something went wrong while sending your message. Please try again.')
-      }
-    } catch {
-      setError('Unable to reach the server. Please check your connection and try again.')
+      await submitInquiryForm(form)
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to reach the server. Please check your connection and try again.')
     } finally {
       setSubmitting(false)
     }
