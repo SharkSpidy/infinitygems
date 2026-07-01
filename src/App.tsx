@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ModalProvider } from './hooks/useModal'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -9,12 +10,23 @@ import ItemDetail from './pages/ItemDetail'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname])
+
+  return null
+}
+
 function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation()
   const isAdmin = pathname.startsWith('/admin')
 
   return (
     <div className="grain">
+      <ScrollToTop />
       {!isAdmin && <Header />}
       <main>{children}</main>
       {!isAdmin && <Footer />}
