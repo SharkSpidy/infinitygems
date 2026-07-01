@@ -30,7 +30,118 @@ export function createGemImage(title: string, gemType: GemType): string {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
 }
 
-export const initialInventory: Ore[] = []
+export const initialInventory: Ore[] = [
+  {
+    id: 'IGM-001',
+    title: 'Vietnamese Ruby Rough – 1,400 Carats',
+    gemType: 'Ruby',
+    category: 'Collector',
+    price: 1800000,
+    stock: 1,
+    isFeatured: true,
+    caratWeight: 1400,
+    weightGrams: 280,
+    dimensionsMm: { length: 220, width: 170, height: 140 },
+    origin: 'Vietnam',
+    description: `Vietnamese Ruby Rough – 1,400 Carats
+
+A remarkable natural ruby rough weighing approximately 1,400 carats, this exceptional specimen originates from the renowned ruby-bearing regions of Vietnam, a source celebrated for producing some of the world's most vibrant and sought-after corundum.
+
+Featuring an intense pinkish-red to deep ruby-red coloration, this unpolished crystal exhibits impressive natural crystal development and substantial gemstone-bearing potential. The rough retains its original geological character, displaying a captivating combination of ruby crystal zones within its natural host matrix, making it equally appealing to gemstone collectors, investors, museums, and lapidary specialists.
+
+Key Features
+
+Gemstone: Natural Ruby (Corundum)
+
+Origin: Vietnam
+
+Weight: Approximately 1,400 Carats
+
+Condition: Natural Unpolished Rough
+
+Color: Vivid Pinkish-Red to Ruby Red
+
+Treatment: Untreated (subject to laboratory verification)
+
+Collector Value: High
+
+Investment Potential: Significant
+
+Display Quality: Museum and Exhibition Grade
+
+A Rare Collector's Treasure
+
+Large ruby rough specimens of this size are exceptionally rare in today's market. Beyond its potential as a source material for cut gemstones, this specimen stands as a striking natural mineral display piece that showcases the beauty and power of nature's geological processes.
+
+Its impressive size, vivid coloration, and authentic natural formation make it a desirable acquisition for private collectors, gemstone investors, luxury exhibitions, museums, and high-end mineral collections worldwide.
+
+Investment & Exhibition Potential
+
+As demand for rare natural ruby specimens continues to grow globally, exceptional rough stones of substantial size and provenance are becoming increasingly difficult to acquire. This 1,400-carat Vietnamese ruby represents not only a unique collector's item but also a tangible natural asset with long-term appreciation potential.
+
+Offered by Infinity Gems and Minerals LLP
+Supplying exceptional natural gemstones and mineral specimens to collectors, investors, museums, jewelers, and international buyers worldwide.`,
+    imageUrl: '/assets/images/PRDTR01.jpeg',
+    additionalImages: ['/assets/images/PRDTR01D.jpeg'],
+    status: 'Available',
+    featuredRank: 1,
+  },
+  {
+    id: 'IGM-002',
+    title: 'Vietnamese Ruby Rough – 1,400 Carats',
+    gemType: 'Ruby',
+    category: 'Collector',
+    price: 1650000,
+    stock: 1,
+    isFeatured: true,
+    caratWeight: 1400,
+    weightGrams: 280,
+    dimensionsMm: { length: 220, width: 170, height: 140 },
+    origin: 'Vietnam',
+    description: `Vietnamese Ruby Rough – 1,400 Carats
+
+A remarkable natural ruby rough weighing approximately 1,400 carats, this exceptional specimen originates from the renowned ruby-bearing regions of Vietnam, a source celebrated for producing some of the world's most vibrant and sought-after corundum.
+
+Featuring an intense pinkish-red to deep ruby-red coloration, this unpolished crystal exhibits impressive natural crystal development and substantial gemstone-bearing potential. The rough retains its original geological character, displaying a captivating combination of ruby crystal zones within its natural host matrix, making it equally appealing to gemstone collectors, investors, museums, and lapidary specialists.
+
+Key Features
+
+Gemstone: Natural Ruby (Corundum)
+
+Origin: Vietnam
+
+Weight: Approximately 1,400 Carats
+
+Condition: Natural Unpolished Rough
+
+Color: Vivid Pinkish-Red to Ruby Red
+
+Treatment: Untreated (subject to laboratory verification)
+
+Collector Value: High
+
+Investment Potential: Significant
+
+Display Quality: Museum and Exhibition Grade
+
+A Rare Collector's Treasure
+
+Large ruby rough specimens of this size are exceptionally rare in today's market. Beyond its potential as a source material for cut gemstones, this specimen stands as a striking natural mineral display piece that showcases the beauty and power of nature's geological processes.
+
+Its impressive size, vivid coloration, and authentic natural formation make it a desirable acquisition for private collectors, gemstone investors, luxury exhibitions, museums, and high-end mineral collections worldwide.
+
+Investment & Exhibition Potential
+
+As demand for rare natural ruby specimens continues to grow globally, exceptional rough stones of substantial size and provenance are becoming increasingly difficult to acquire. This 1,400-carat Vietnamese ruby represents not only a unique collector's item but also a tangible natural asset with long-term appreciation potential.
+
+Offered by Infinity Gems and Minerals LLP
+Supplying exceptional natural gemstones and mineral specimens to collectors, investors, museums, jewelers, and international buyers worldwide.`,
+    imageUrl: '/assets/images/PRDTR02.jpeg',
+    additionalImages: ['/assets/images/PRDTR02D.jpeg'],
+    status: 'Available',
+    featuredRank: 2,
+  },
+]
 
 export function getInventory(): Ore[] {
   if (typeof window === 'undefined') return initialInventory
