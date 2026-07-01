@@ -66,11 +66,11 @@ export default function ItemDetail() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-6 md:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-12 xl:gap-16">
           {/* Images */}
-          <div className="space-y-4">
-            <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
-              <img src={allImages[activeImg]} alt={ore.title} className="w-full h-full object-cover" />
+          <div className="space-y-3 max-w-[520px] mx-auto w-full">
+            <div className="relative aspect-[4/5] max-h-[540px] overflow-hidden bg-charcoal">
+              <img src={allImages[activeImg]} alt={ore.title} className="w-full h-full object-contain bg-[#071018]" />
               <div className="absolute top-5 left-5">
                 <span className={`font-sans text-xs tracking-widest uppercase px-3 py-1.5 ${
                   ore.gemType === 'Sapphire'
@@ -81,10 +81,10 @@ export default function ItemDetail() {
             </div>
 
             {allImages.length > 1 && (
-              <div className="flex gap-3">
+              <div className="flex gap-2.5">
                 {allImages.map((img, i) => (
                   <button key={i} onClick={() => setActiveImg(i)}
-                    className={`relative w-16 aspect-square overflow-hidden transition-all duration-300 ${activeImg === i ? 'border border-gold/60' : 'border border-transparent opacity-50 hover:opacity-80'}`}>
+                    className={`relative w-14 aspect-square overflow-hidden transition-all duration-300 ${activeImg === i ? 'border border-gold/60' : 'border border-transparent opacity-50 hover:opacity-80'}`}>
                     <img src={img} alt={`View ${i + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
@@ -94,17 +94,17 @@ export default function ItemDetail() {
 
           {/* Info */}
           <div className="flex flex-col">
-            <div className="mb-8">
+            <div className="mb-6">
               <p className="font-sans text-xs tracking-widest text-gold/70 mb-2">{ore.id}</p>
-              <h1 className="font-serif text-4xl md:text-5xl text-ivory font-light leading-tight mb-2">{ore.title}</h1>
+              <h1 className="font-serif text-3xl md:text-4xl text-ivory font-light leading-tight mb-2">{ore.title}</h1>
               <p className="font-sans text-sm text-silver/60 font-light">{ore.origin}</p>
             </div>
 
-            <div className="divider-gold mb-8" />
+            <div className="divider-gold mb-6" />
 
-            <p className="font-sans text-sm text-silver leading-loose font-light mb-10">{ore.description}</p>
+            <p className="font-sans text-sm text-silver leading-7 font-light mb-6 whitespace-pre-line">{ore.description.split('\n').slice(0, 8).join('\n')}</p>
 
-            <div className="border border-iron/30 bg-charcoal/30 mb-10">
+            <div className="border border-iron/30 bg-charcoal/30 mb-6">
               <div className="px-5 py-3 border-b border-iron/20">
                 <h3 className="font-sans text-xs tracking-widest uppercase text-gold">Specimen Details</h3>
               </div>
@@ -120,7 +120,7 @@ export default function ItemDetail() {
               ))}
             </div>
 
-            <div className="flex items-start gap-3 mb-8 p-4 border border-gold/20 bg-gold/5">
+            <div className="flex items-start gap-3 mb-6 p-3.5 border border-gold/20 bg-gold/5">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0 mt-0.5">
                 <circle cx="8" cy="8" r="7" stroke="#C9A84C" strokeWidth="0.8"/>
                 <path d="M8 5V8M8 11H8.01" stroke="#C9A84C" strokeWidth="0.8" strokeLinecap="round"/>
@@ -132,11 +132,11 @@ export default function ItemDetail() {
 
             {ore.status === 'Available' ? (
               <button onClick={() => openModal(ore.id, ore.title)}
-                className="w-full py-5 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300">
+                className="w-full py-4 bg-gold/10 border border-gold/60 text-gold font-sans text-xs tracking-widest uppercase hover:bg-gold/20 hover:border-gold transition-all duration-300">
                 Inquire for Valuation
               </button>
             ) : (
-              <div className="w-full py-5 border border-iron/30 text-center text-silver font-sans text-xs tracking-widest uppercase">
+              <div className="w-full py-4 border border-iron/30 text-center text-silver font-sans text-xs tracking-widest uppercase">
                 This Specimen is {ore.status}
               </div>
             )}
