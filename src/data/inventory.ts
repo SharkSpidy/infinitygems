@@ -100,9 +100,7 @@ Supplying exceptional natural gemstones and mineral specimens to collectors, inv
     origin: 'Vietnam',
     description: `Vietnamese Ruby Rough – 519.75 Carats
 
-A remarkable natural ruby rough weighing approximately 519.75 carats, this exceptional specimen originates from the renowned ruby-bearing regions of Vietnam, a source celebrated for producing some of the world's most vibrant and sought-after corundum.
-
-Featuring an intense pinkish-red to deep ruby-red coloration, this unpolished crystal exhibits impressive natural crystal development and substantial gemstone-bearing potential. The rough retains its original geological character, displaying a captivating combination of ruby crystal zones within its natural host matrix, making it equally appealing to gemstone collectors, investors, museums, and lapidary specialists.
+Originating from the renowned ruby-bearing regions of Vietnam, this exceptional 519.75-carat natural ruby rough exhibits intense pinkish-red to deep ruby-red coloration. Retaining its original geological character, the unpolished crystal showcases a captivating mix of ruby zones within its natural host matrix, offering substantial gemstone-bearing potential.
 
 Key Features
 
@@ -126,13 +124,7 @@ Display Quality: Museum and Exhibition Grade
 
 A Rare Collector's Treasure
 
-Large ruby rough specimens of this size are exceptionally rare in today's market. Beyond its potential as a source material for cut gemstones, this specimen stands as a striking natural mineral display piece that showcases the beauty and power of nature's geological processes.
-
-Its impressive size, vivid coloration, and authentic natural formation make it a desirable acquisition for private collectors, gemstone investors, luxury exhibitions, museums, and high-end mineral collections worldwide.
-
-Investment & Exhibition Potential
-
-As demand for rare natural ruby specimens continues to grow globally, exceptional rough stones of substantial size and provenance are becoming increasingly difficult to acquire. This 1,400-carat Vietnamese ruby represents not only a unique collector's item but also a tangible natural asset with long-term appreciation potential.
+Large ruby roughs of this caliber are exceptionally rare in today's market. Beyond its potential for cut gemstones, this piece stands as a striking natural mineral display. As global demand for rare rubies grows, this 519.75-carat specimen represents a unique, museum-grade acquisition and a tangible natural asset with significant long-term appreciation potential.
 
 Offered by Infinity Gems and Minerals LLP
 Supplying exceptional natural gemstones and mineral specimens to collectors, investors, museums, jewelers, and international buyers worldwide.`,
