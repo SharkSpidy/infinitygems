@@ -88,19 +88,19 @@ Supplying exceptional natural gemstones and mineral specimens to collectors, inv
   },
   {
     id: 'IGM-002',
-    title: 'Vietnamese Ruby Rough – 1,400 Carats',
+    title: 'Vietnamese Ruby Rough – 519.75 Carats',
     gemType: 'Ruby',
     category: 'Collector',
     price: 1650000,
     stock: 1,
     isFeatured: true,
-    caratWeight: 1400,
-    weightGrams: 280,
+    caratWeight: 519.75,
+    weightGrams: 103.95,
     dimensionsMm: { length: 220, width: 170, height: 140 },
     origin: 'Vietnam',
-    description: `Vietnamese Ruby Rough – 1,400 Carats
+    description: `Vietnamese Ruby Rough – 519.75 Carats
 
-A remarkable natural ruby rough weighing approximately 1,400 carats, this exceptional specimen originates from the renowned ruby-bearing regions of Vietnam, a source celebrated for producing some of the world's most vibrant and sought-after corundum.
+A remarkable natural ruby rough weighing approximately 519.75 carats, this exceptional specimen originates from the renowned ruby-bearing regions of Vietnam, a source celebrated for producing some of the world's most vibrant and sought-after corundum.
 
 Featuring an intense pinkish-red to deep ruby-red coloration, this unpolished crystal exhibits impressive natural crystal development and substantial gemstone-bearing potential. The rough retains its original geological character, displaying a captivating combination of ruby crystal zones within its natural host matrix, making it equally appealing to gemstone collectors, investors, museums, and lapidary specialists.
 
@@ -110,7 +110,7 @@ Gemstone: Natural Ruby (Corundum)
 
 Origin: Vietnam
 
-Weight: Approximately 1,400 Carats
+Weight: Approximately 519.75 Carats
 
 Condition: Natural Unpolished Rough
 
